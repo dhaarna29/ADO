@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7c80550-1673-4886-911d-d2d5c8bdb07e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-    </list>
+    <list default="true" id="c7c80550-1673-4886-911d-d2d5c8bdb07e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,23 +23,24 @@
         <counts>
           <entry key="Procfile" value="2" />
           <entry key="py" value="6" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="PLAIN_TEXT" value="3" />
           <entry key="Python" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Procfile" value="1" />
-          <entry key="py" value="3521" />
+          <entry key="py" value="3530" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3521" />
+          <entry key="Python" value="3530" />
           <entry key="UNKNOWN" value="1" />
         </counts>
       </usages-collector>
@@ -77,12 +76,12 @@
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="41" selection-start-column="41" selection-end-column="41" />
+              <caret column="50" selection-start-column="50" selection-end-column="50" />
               <folding>
-                <marker date="1573341107993" expanded="true" signature="1087:1088" ph="..." />
-                <marker date="1573341107993" expanded="true" signature="1087:2099" ph="..." />
-                <marker date="1573341107993" expanded="true" signature="1673:2099" ph="..." />
-                <marker date="1573341107993" expanded="true" signature="4156:4206" ph="..." />
+                <marker date="1573341241964" expanded="true" signature="1096:1097" ph="..." />
+                <marker date="1573341241964" expanded="true" signature="1096:2108" ph="..." />
+                <marker date="1573341241964" expanded="true" signature="1682:2108" ph="..." />
+                <marker date="1573341241964" expanded="true" signature="4165:4215" ph="..." />
               </folding>
             </state>
           </provider>
@@ -174,7 +173,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -226,15 +224,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="41" selection-start-column="41" selection-end-column="41" />
+          <caret column="50" selection-start-column="50" selection-end-column="50" />
           <folding>
-            <marker date="1573341107993" expanded="true" signature="1087:1088" ph="..." />
-            <marker date="1573341107993" expanded="true" signature="1087:2099" ph="..." />
-            <marker date="1573341107993" expanded="true" signature="1673:2099" ph="..." />
-            <marker date="1573341107993" expanded="true" signature="4156:4206" ph="..." />
+            <marker date="1573341241964" expanded="true" signature="1096:1097" ph="..." />
+            <marker date="1573341241964" expanded="true" signature="1096:2108" ph="..." />
+            <marker date="1573341241964" expanded="true" signature="1682:2108" ph="..." />
+            <marker date="1573341241964" expanded="true" signature="4165:4215" ph="..." />
           </folding>
         </state>
       </provider>
