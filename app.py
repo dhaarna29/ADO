@@ -114,8 +114,7 @@ def dl_image():
 # A welcome message to test our server
 @app.route('/img', methods=['POST'])
 def index():
-    json1 = request.get_json()
-    s = json1['content']
+    s = request.body.image
 
     with open("imageToSave.png", "wb") as fh:
         fh.write(s.decode('base64'))
