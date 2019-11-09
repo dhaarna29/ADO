@@ -1,30 +1,47 @@
 from flask import Flask, request, jsonify
+import requests
+import base64
+import io
+from google.cloud import vision
+from google.cloud.vision import types
+import os
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']='F:/WebD/react/AwesomeProject/api-test-5195f987539c.json'
+
+
 app = Flask(__name__)
+url="https://vision.googleapis.com/v1/images:annotate"
+api_key='AIzaSyA_1Oro_J8ndG62rzAZvhPQsmTuQWTrMXM'
 
-@app.route('/getmsg/', methods=['GET'])
-def respond():
-    # Retrieve the name from url parameter
-    name = request.args.get("name", None)
+@app.route('/image/', methods=['POST'])
+def get_image():
+    client = vision.ImageAnnotatorClient()
+    with io.open('images.jpg', 'rb') as image_file1:
+        content = image_file1.read()
+    content_image = types.Image(content=content)
+    response = client.document_text_detection(image=content_image)
+    document = response.full_text_annotation
+    print(document)
+    return {}
+    # img=request.data
+    # content = img
+    # img_request = {"requests": [{
+    #     'image': {'content': content},
+    #     'features': [{
+    #         'type': 'TEXT_DETECTION',
+    #         'maxResults': 20
+    #     }]
+    # }]
+    # }
+    # response = requests.post(url,
+    #                          data=json.dumps(img_request),
+    #                          params={'key': api_key},
+    #                          headers={'Content-Type': 'application/json'})
+    # print(response)
+    # for idx, resp in enumerate(response.json()['responses']):
+    #     print(resp)
+    # return response.text
 
-    # For debugging
-    print(f"got name {name}")
-
-    response = {}
-
-    # Check if user sent a name at all
-    if not name:
-        response["ERROR"] = "no name found, please send a name."
-    # Check if the user entered a number not a name
-    elif str(name).isdigit():
-        response["ERROR"] = "name can't be numeric."
-    # Now the user entered a valid name
-    else:
-        response["MESSAGE"] = f"Welcome {name} to our awesome platform!!"
-
-    # Return the response in json format
-    return jsonify(response)
-
-@app.route('/post/', methods=['POST'])
 def post_something():
     param = request.form.get('name')
     print(param)
