@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import requests
 import base64
 from PIL import Image, ImageDraw
 from enum import Enum
