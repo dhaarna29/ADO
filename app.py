@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 import requests
 import base64
+from PIL import Image, ImageDraw
+from enum import Enum
 import io
 from google.cloud import vision
 from google.cloud.vision import types
 import os
+from heuristics import  *
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS']='F:/WebD/react/AwesomeProject/api-test-5195f987539c.json'
 
@@ -13,49 +16,101 @@ app = Flask(__name__)
 url="https://vision.googleapis.com/v1/images:annotate"
 api_key='AIzaSyA_1Oro_J8ndG62rzAZvhPQsmTuQWTrMXM'
 
-@app.route('/image/', methods=['POST'])
+
+class FeatureType(Enum):
+    PAGE = 1
+    BLOCK = 2
+    PARA = 3
+    WORD = 4
+    SYMBOL = 5
+
+
+
+@app.route('/aadhar/', methods=['GET'])
 def get_image():
     client = vision.ImageAnnotatorClient()
-    with io.open('images.jpg', 'rb') as image_file1:
+    # image=Image.open('aadhar_test.jpeg')
+    image=Image.open('dhaarna.jpg')
+    with io.open('dhaarna.jpg', 'rb') as image_file1:
         content = image_file1.read()
     content_image = types.Image(content=content)
     response = client.document_text_detection(image=content_image)
     document = response.full_text_annotation
-    print(document)
-    return {}
-    # img=request.data
-    # content = img
-    # img_request = {"requests": [{
-    #     'image': {'content': content},
-    #     'features': [{
-    #         'type': 'TEXT_DETECTION',
-    #         'maxResults': 20
-    #     }]
-    # }]
-    # }
-    # response = requests.post(url,
-    #                          data=json.dumps(img_request),
-    #                          params={'key': api_key},
-    #                          headers={'Content-Type': 'application/json'})
-    # print(response)
-    # for idx, resp in enumerate(response.json()['responses']):
-    #     print(resp)
-    # return response.text
 
-def post_something():
-    param = request.form.get('name')
-    print(param)
-    # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
-    if param:
-        return jsonify({
-            "Message": f"Welcome {name} to our awesome platform!!",
-            # Add this option to distinct the POST request
-            "METHOD" : "POST"
-        })
-    else:
-        return jsonify({
-            "ERROR": "no name found, please send a name."
-        })
+    res=aadhar_check(document.text)
+    if(res[0]):
+        return res[1]
+    return str(res[0])
+
+
+@app.route('/pan/', methods=['GET'])
+def pan_image():
+    client = vision.ImageAnnotatorClient()
+    # image=Image.open('aadhar_test.jpeg')
+    image = Image.open('pan_test2.jpg')
+    with io.open('pan_test2.jpg', 'rb') as image_file1:
+        content = image_file1.read()
+    content_image = types.Image(content=content)
+    response = client.document_text_detection(image=content_image)
+    document = response.full_text_annotation
+    res = pan_check(document.text)
+    if res[0]:
+        return res[1]
+    return str(res[0])
+
+@app.route('/DL/', methods=['GET'])
+def dl_image():
+    client = vision.ImageAnnotatorClient()
+    # image=Image.open('aadhar_test.jpeg')
+    image = Image.open('dl_test.jpg')
+    with io.open('dl_test.jpg', 'rb') as image_file1:
+        content = image_file1.read()
+    content_image = types.Image(content=content)
+    response = client.document_text_detection(image=content_image)
+    document = response.full_text_annotation
+    res = dl_check(document.text)
+    return res
+# bounds = []
+#     feature=FeatureType.WORD
+#     for i, page in enumerate(document.pages):
+#         for block in page.blocks:
+#             for paragraph in block.paragraphs:
+#                 for word in paragraph.words:
+#                     for symbol in word.symbols:
+#                         if (feature == FeatureType.SYMBOL):
+#                             bounds.append(symbol.bounding_box)
+#                     if (feature == FeatureType.WORD):
+#                         bounds.append(word.bounding_box)
+#
+#     draw = ImageDraw.Draw(image)
+#     for bound in bounds:
+#         draw.line([
+#             bound.vertices[0].x, bound.vertices[0].y,
+#             bound.vertices[1].x, bound.vertices[1].y,
+#             bound.vertices[2].x, bound.vertices[2].y,
+#             bound.vertices[3].x, bound.vertices[3].y,
+#             bound.vertices[0].x, bound.vertices[0].y], fill='yellow', width=2)
+#
+#     for i, page in enumerate(document.pages):
+#         for block in page.blocks:
+#             print(block)
+#             break
+#             bounds.append(block.bounding_box)
+#
+#             for paragraph in block.paragraphs:
+#                 for word in paragraph.words:
+#                     linelist.append(word.symbols)
+#                     for symbol in word.symbols:
+#                         bounds.append(word.bounding_box)
+#
+#     draw = ImageDraw.Draw(image)
+#     for bound in bounds:
+#         draw.line([
+#             bound.vertices[0].x, bound.vertices[0].y,
+#             bound.vertices[1].x, bound.vertices[1].y,
+#             bound.vertices[2].x, bound.vertices[2].y,
+#             bound.vertices[3].x, bound.vertices[3].y,
+#             bound.vertices[0].x, bound.vertices[0].y], fill='red', width=2)
 
 # A welcome message to test our server
 @app.route('/')
