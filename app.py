@@ -26,7 +26,7 @@ class FeatureType(Enum):
 
 
 
-@app.route('/aadhar/', methods=['GET'])
+@app.route('/aadhar/', methods=['POST'])
 def get_image():
     client = vision.ImageAnnotatorClient()
     # image=Image.open('aadhar_test.jpeg')
@@ -43,7 +43,7 @@ def get_image():
     return str(res[0])
 
 
-@app.route('/pan/', methods=['GET'])
+@app.route('/pan/', methods=['POST'])
 def pan_image():
     client = vision.ImageAnnotatorClient()
     # image=Image.open('aadhar_test.jpeg')
@@ -58,7 +58,7 @@ def pan_image():
         return res[1]
     return str(res[0])
 
-@app.route('/DL/', methods=['GET'])
+@app.route('/DL/', methods=['POST'])
 def dl_image():
     client = vision.ImageAnnotatorClient()
     # image=Image.open('aadhar_test.jpeg')
@@ -113,8 +113,13 @@ def dl_image():
 #             bound.vertices[0].x, bound.vertices[0].y], fill='red', width=2)
 
 # A welcome message to test our server
-@app.route('/')
+@app.route('/', methods=['POST'])
 def index():
+    json1 = request.get_json()
+    s = json1['content']
+
+    with open("imageToSave.png", "wb") as fh:
+        fh.write(s.decode('base64'))
     return "<h1>Welcome to our server !!</h1>"
 
 if __name__ == '__main__':
