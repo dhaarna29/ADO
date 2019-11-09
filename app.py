@@ -113,7 +113,7 @@ def dl_image():
 #             bound.vertices[0].x, bound.vertices[0].y], fill='red', width=2)
 
 # A welcome message to test our server
-@app.route('/', methods=['POST'])
+@app.route('/img', methods=['POST'])
 def index():
     json1 = request.get_json()
     s = json1['content']
@@ -121,6 +121,11 @@ def index():
     with open("imageToSave.png", "wb") as fh:
         fh.write(s.decode('base64'))
     return "<h1>Welcome to our server !!</h1>"
+
+@app.route('/',methods=['GET'])
+def home():
+    return "<h1>Welcome to our server !!</h1>"
+
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
