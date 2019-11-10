@@ -116,7 +116,7 @@ def dl_image():
 def index():
     s = request.body.image
 
-    with open("imageToSave.png", "wb") as fh:
+    with open("imageToSave.jpg", "wb") as fh:
         fh.write(s.decode('base64'))
     return "<h1>Welcome to our server !!</h1>"
 
