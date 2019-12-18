@@ -1,0 +1,27 @@
+Index: labels.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><<<<<<< HEAD\r\nAdhaar Card\r\nBank Proof\r\nDriving License\r\nPan Card\r\nVoter Card\r\n=======\r\nAdhaar Card\r\nBank Proof\r\nDriving License\r\nPan Card\r\nVoter Crad\r\n>>>>>>> 8014e6d88730d5db3ce95b7f22717e882f33ef2d\r\nOther
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- labels.txt	(date 1576696564000)
++++ labels.txt	(date 1576697046134)
+@@ -1,3 +1,4 @@
++<<<<<<< HEAD
+ <<<<<<< HEAD
+ Adhaar Card
+ Bank Proof
+@@ -11,4 +12,11 @@
+ Pan Card
+ Voter Crad
+ >>>>>>> 8014e6d88730d5db3ce95b7f22717e882f33ef2d
++=======
++Adhaar Card
++Bank Proof
++Driving License
++Pan Card
++Voter Crad
++>>>>>>> 9f9ebd0349807ad947aab10215570f83f9f6585d
+ Other
+\ No newline at end of file
