@@ -14,18 +14,12 @@ from tensorflow.lite.python import interpreter as interpreter_wrapper
 
 
 #Load TFLite model and allocate tensors.
-def model(filename):
     interpreter = tf.lite.Interpreter(model_path="model.tflite")
     interpreter.allocate_tensors()
     file_name = r"ID_RANDOM_DATA\voter_card\voter_card\15389_Voter_ID_CKF6244640_1.jpeg"
     interpreter = tf.lite.Interpreter(model_path="model.tflite")
     interpreter.allocate_tensors()
     file_name = r"ID_RANDOM_DATA\voter_card\voter_card\15389_Voter_ID_CKF6244640_1.jpeg"
-
-
-
-
-
 
     #Get input and output tensors.
     input_mean = 127.5
