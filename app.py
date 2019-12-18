@@ -13,7 +13,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS']='F:/WebD/react/AwesomeProject/api-t
 
 app = Flask(__name__)
 url="https://vision.googleapis.com/v1/images:annotate"
-api_key='AIzaSyA_1Oro_J8ndG62rzAZvhPQsmTuQWTrMXM'
+api_key=''
 
 
 class FeatureType(Enum):
@@ -25,12 +25,12 @@ class FeatureType(Enum):
 
 
 
-@app.route('/aadhar/', methods=['POST'])
+@app.route('/aadhar/', methods=['GET'])
 def get_image():
     client = vision.ImageAnnotatorClient()
     # image=Image.open('aadhar_test.jpeg')
-    image=Image.open('dhaarna.jpg')
-    with io.open('dhaarna.jpg', 'rb') as image_file1:
+    image=Image.open('laisha.jpg')
+    with io.open('laisha.jpg', 'rb') as image_file1:
         content = image_file1.read()
     content_image = types.Image(content=content)
     response = client.document_text_detection(image=content_image)
@@ -42,7 +42,7 @@ def get_image():
     return str(res[0])
 
 
-@app.route('/pan/', methods=['POST'])
+@app.route('/pan/', methods=['GET'])
 def pan_image():
     client = vision.ImageAnnotatorClient()
     # image=Image.open('aadhar_test.jpeg')
@@ -57,7 +57,7 @@ def pan_image():
         return res[1]
     return str(res[0])
 
-@app.route('/DL/', methods=['POST'])
+@app.route('/DL/', methods=['GET'])
 def dl_image():
     client = vision.ImageAnnotatorClient()
     # image=Image.open('aadhar_test.jpeg')
@@ -112,10 +112,10 @@ def dl_image():
 #             bound.vertices[0].x, bound.vertices[0].y], fill='red', width=2)
 
 # A welcome message to test our server
-@app.route('/img', methods=['POST'])
+@app.route('/img', methods=['GET'])
 def index():
-    s = request.body.image
-
+    s = request.get_json()
+    print(s)
     with open("imageToSave.jpg", "wb") as fh:
         fh.write(s.decode('base64'))
     return "<h1>Welcome to our server !!</h1>"
